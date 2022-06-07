@@ -2,8 +2,10 @@ package com.ds.productservice.controller;
 
 import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.business.service.SubTypeProductService;
+import com.ds.productservice.business.service.TypeProductService;
 import com.ds.productservice.document.Product;
 import com.ds.productservice.document.SubTypeProduct;
+import com.ds.productservice.document.TypeProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,12 @@ public class ProductController {
     @Autowired
     private SubTypeProductService subTypeProductService;
 
-    @GetMapping("/liststp")
-    public Mono<ResponseEntity<Flux<SubTypeProduct>>> listSubTypes(){
-        return Mono.just(ResponseEntity.ok()
-                .body(subTypeProductService.listSubTypeProducts()));
-    }
+    @Autowired
+    private TypeProductService typeProductService;
+
+
+
+
+
+
 }
