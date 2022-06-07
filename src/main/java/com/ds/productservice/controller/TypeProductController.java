@@ -11,6 +11,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequestMapping("/api/TypeProduct")
 public class TypeProductController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class TypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping()
     public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
         return typeProductService.createTypeProduct(tp)
                 .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
