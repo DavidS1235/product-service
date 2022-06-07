@@ -1,12 +1,6 @@
 spring:
-  data:
-    mongodb:
-      database: db_products
-      port: 27017
-      host: localhost
-      username: root
-      password:
-        - 1234
-logging:
-  config:
-    classpath: logback.xml
+  application:
+    name: product-service
+  cloud:
+    config:
+      uri: htp://localhost:8081
