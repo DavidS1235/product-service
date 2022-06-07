@@ -3,8 +3,8 @@ package com.ds.productservice.controller;
 
 import com.ds.productservice.business.service.TypeProductService;
 import com.ds.productservice.document.TypeProduct;
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -16,11 +16,6 @@ public class TypeProductController {
     @Autowired
     private TypeProductService typeProductService;
 
-//
-//    @PostMapping("/createtp")
-//    Mono<ResponseEntity<TypeProduct>> createtp(@RequestBody TypeProduct typeProduct){
-//        return typeProductService.saveTypeProduct(typeProduct);
-//    }
     @GetMapping("/listtp")
     public Mono<ResponseEntity<Flux<TypeProduct>>> listTypes(){
         return Mono.just(ResponseEntity.ok()
@@ -32,6 +27,39 @@ public class TypeProductController {
         return typeProductService.find(id)
                 .map(p -> ResponseEntity.ok()
                         .body(p))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
+        return typeProductService.createTypeProduct(tp)
+                .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
+                        .body(p)
+                );
+    }
+
+    @PutMapping("/{id}")
+    public Mono<ResponseEntity<TypeProduct>> update(@RequestBody TypeProduct tp, @PathVariable String id){
+        return typeProductService.find(id)
+                .flatMap(sub -> {
+                    sub.setCode(tp.getCode());
+                    sub.setName(tp.getName());
+                    sub.setProduct(tp.getProduct());
+                    return typeProductService.createTypeProduct(tp);
+                })
+                .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
+                        .body(p)
+                )
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
+        return typeProductService.find(id)
+                .flatMap(tp -> {
+                    return typeProductService.DeleteTypeProduct(tp)
+                            .then(Mono.just(ResponseEntity.noContent().build()));
+                })
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }
