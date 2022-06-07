@@ -15,7 +15,6 @@ public class Product {
     @Id
     private String id;
     private String name;
-    private TypeProduct typeProduct;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
 
@@ -29,9 +28,8 @@ public class Product {
     private Integer idBank1;
     */
 
-    public Product(String name, TypeProduct typeProduct, Date createAt) {
+    public Product(String name, Date createAt) {
         this.name = name;
-        this.typeProduct = typeProduct;
         this.createAt = createAt;
     }
 }

@@ -18,9 +18,8 @@ public class TypeProduct {
     private String name;
     private Product product;
 
-    public TypeProduct(String code, String name, Product product) {
+    public TypeProduct(String code, String name) {
         this.code = code;
         this.name = name;
-        this.product = product;
     }
 }

@@ -8,7 +8,11 @@
         </layout>
     </appender>
 
-    <logger name="ProductServiceApplication" level="warn">
+    <!-- <logger name="ProductServiceApplication" level="warn">
         <appender-ref ref="CONSOLE"/>
     </logger>
+    -->
+    <root>
+        <appender-ref ref="CONSOLE"/>
+    </root>
 </Configuration>
