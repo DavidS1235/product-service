@@ -1,9 +1,10 @@
 package com.ds.productservice.business;
 
-import com.ds.productservice.model.mongo.Product;
-import java.util.List;
+import com.ds.productservice.document.Product;
+import reactor.core.publisher.Flux;
 
 public interface ProductService {
 
-    List<Product> findProducts();
+    Flux<Product> listProducts();
+
 }

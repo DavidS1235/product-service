@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: product-service
-  cloud:
-    config:
-      uri: htp://localhost:8081
