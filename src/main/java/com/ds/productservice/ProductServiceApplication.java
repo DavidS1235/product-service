@@ -64,7 +64,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 								new SubTypeProduct("SP0007","Tarjeta de credito Empresarial",active)
 						).flatMap(sub ->{
 							sub.setDate(new Date());
-							return subTypeProductService.saveSubTypeProduct(sub);
+							return subTypeProductService.createSubTypeProduct(sub);
 						})
 				)
 								.subscribe(stp -> log.info("Insert -> Code: "+ stp.getCode()+ "Name: "+ stp.getName()));
