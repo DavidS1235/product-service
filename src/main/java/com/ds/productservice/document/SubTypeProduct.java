@@ -17,8 +17,11 @@ public class SubTypeProduct {
     private String code;
     private String name;
 
-    public SubTypeProduct(String code, String name) {
+    private TypeProduct typeProduct;
+
+    public SubTypeProduct(String code, String name, TypeProduct typeProduct) {
         this.code = code;
         this.name = name;
+        this.typeProduct = typeProduct;
     }
 }

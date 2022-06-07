@@ -16,9 +16,11 @@ public class TypeProduct {
     private String id;
     private String code;
     private String name;
+    private Product product;
 
-    public TypeProduct(String code, String name) {
+    public TypeProduct(String code, String name, Product product) {
         this.code = code;
         this.name = name;
+        this.product = product;
     }
 }
