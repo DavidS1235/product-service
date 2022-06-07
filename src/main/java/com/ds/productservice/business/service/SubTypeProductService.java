@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 public interface SubTypeProductService {
 
 
-    public Mono<SubTypeProduct> createSubTypeProduct(SubTypeProduct stp);
+    public Mono<SubTypeProduct> saveSubTypeProduct(SubTypeProduct stp);
 
     public Flux<SubTypeProduct> findAllSubTypeProduct();
 
