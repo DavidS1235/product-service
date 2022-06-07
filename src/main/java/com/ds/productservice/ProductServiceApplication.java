@@ -1,9 +1,7 @@
 package com.ds.productservice;
 
-import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.business.service.SubTypeProductService;
 import com.ds.productservice.business.service.TypeProductService;
-import com.ds.productservice.document.Product;
 import com.ds.productservice.document.SubTypeProduct;
 import com.ds.productservice.document.TypeProduct;
 import java.util.Date;
@@ -48,7 +46,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 
 		Flux.just(passive, active)
-				.flatMap(tp -> typeProductService.saveTypeProduct(tp))
+				.flatMap(tp -> typeProductService.createTypeProduct(tp))
 				.doOnNext(tp -> {
 					log.info("TypeProduct created: "+ tp.getCode() + tp.getName());
 				})
@@ -70,6 +68,8 @@ public class ProductServiceApplication implements CommandLineRunner {
 						})
 				)
 								.subscribe(stp -> log.info("Insert -> Code: "+ stp.getCode()+ "Name: "+ stp.getName()));
+
+
 
 	}
 }

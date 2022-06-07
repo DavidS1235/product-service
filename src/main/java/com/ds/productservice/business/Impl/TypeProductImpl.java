@@ -15,12 +15,22 @@ public class TypeProductImpl implements TypeProductService {
     TypeProductRespository repository;
 
     @Override
-    public Flux<TypeProduct> listTypeProduct() {
+    public Mono<TypeProduct> createTypeProduct(TypeProduct tp) {
+        return repository.save(tp);
+    }
+
+    @Override
+    public Flux<TypeProduct> findAllTypeProduct() {
         return repository.findAll();
     }
 
     @Override
-    public Mono<TypeProduct> saveTypeProduct(TypeProduct tp) {
-        return repository.save(tp);
+    public Mono<TypeProduct> find(String id) {
+        return repository.findById(id);
     }
+    @Override
+    public Mono<Void> DeleteTypeProduct(TypeProduct tp) {return repository.delete(tp);}
+
+
+
 }

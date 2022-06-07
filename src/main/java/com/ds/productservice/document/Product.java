@@ -18,6 +18,8 @@ public class Product {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
 
+    private Client client;
+
     /*private Integer idBank;
     private Integer idClient;
     private Integer idStpePduct;
@@ -28,8 +30,9 @@ public class Product {
     private Integer idBank1;
     */
 
-    public Product(String name, Date createAt) {
+    public Product(String name, Date createAt, Client client) {
         this.name = name;
         this.createAt = createAt;
+        this.client = client;
     }
 }

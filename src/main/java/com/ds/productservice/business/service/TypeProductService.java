@@ -6,7 +6,15 @@ import reactor.core.publisher.Mono;
 
 public interface TypeProductService {
 
+    public Mono<TypeProduct> createTypeProduct(TypeProduct tp);
 
-    public Flux<TypeProduct> listTypeProduct();
-    public Mono<TypeProduct> saveTypeProduct (TypeProduct tp);
+    public Flux<TypeProduct> findAllTypeProduct();
+
+    public Mono<TypeProduct> find(String id);
+
+    public Mono<Void> DeleteTypeProduct(TypeProduct tp);
+
+
+
+
 }
