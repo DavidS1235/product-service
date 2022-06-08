@@ -14,11 +14,9 @@ public class Product {
 
     @Id
     private String id;
-    private String name;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createAt;
-
-    private Client client;
+    private String idBank;
+    private String tpeCrrency;
+    private String idClient;
 
     /*private Integer idBank;
     private Integer idClient;
@@ -30,9 +28,9 @@ public class Product {
     private Integer idBank1;
     */
 
-    public Product(String name, Date createAt, Client client) {
-        this.name = name;
-        this.createAt = createAt;
-        this.client = client;
+    public Product(String idBank, String tpeCrrency, String idClient) {
+        this.idBank = idBank;
+        this.tpeCrrency = tpeCrrency;
+        this.idClient = idClient;
     }
 }
