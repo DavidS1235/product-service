@@ -10,3 +10,11 @@ spring:
 logging:
   config:
     classpath: logback-test.xml
+
+#config-server conection
+#spring:
+#  application:
+#    name: product-service
+#  cloud:
+#    config:
+#      uri: http://localhost:8081
