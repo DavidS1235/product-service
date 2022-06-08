@@ -46,7 +46,7 @@ public class ProductController {
                     prd.setTpeCrrency(p.getTpeCrrency());
                     prd.setSubTypeProduct(p.getSubTypeProduct());
                     prd.setIdClient(p.getIdClient());
-                    return productService.saveProduct(p);
+                    return productService.saveProduct(prd);
                 })
                 .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
                         .body(pr)

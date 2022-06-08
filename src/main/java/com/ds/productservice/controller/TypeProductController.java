@@ -45,7 +45,7 @@ public class TypeProductController {
                 .flatMap(sub -> {
                     sub.setCode(tp.getCode());
                     sub.setName(tp.getName());
-                    return typeProductService.saveTypeProduct(tp);
+                    return typeProductService.saveTypeProduct(sub);
                 })
                 .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
                         .body(tpr)

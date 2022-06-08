@@ -48,7 +48,7 @@ public class SubTypeProductController {
                     sub.setName(stp.getName());
                     sub.setDate(stp.getDate());
                     sub.setTypeProduct(stp.getTypeProduct());
-                    return subTypeProductService.saveSubTypeProduct(stp);
+                    return subTypeProductService.saveSubTypeProduct(sub);
                 })
                 .map(p -> ResponseEntity.created(URI.create("/api/subTypeProduct/".concat(p.getId())))
                         .body(p)
