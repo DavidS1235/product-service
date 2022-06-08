@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Mono<Product> createProduct(Product p) {
+    public Mono<Product> saveProduct(Product p) {
         return repository.save(p);
     }
 
