@@ -44,6 +44,7 @@ public class ProductController {
                 .flatMap(prd -> {
                     prd.setIdBank(p.getIdBank());
                     prd.setTpeCrrency(p.getTpeCrrency());
+                    prd.setDate(p.getDate());
                     prd.setSubTypeProduct(p.getSubTypeProduct());
                     prd.setIdClient(p.getIdClient());
                     return productService.saveProduct(prd);

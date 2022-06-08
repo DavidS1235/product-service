@@ -17,7 +17,7 @@ public class TypeProductController {
     @Autowired
     private TypeProductService typeProductService;
 
-    @GetMapping("/listtp")
+    @GetMapping("")
     public Mono<ResponseEntity<Flux<TypeProduct>>> listTypes(){
         return Mono.just(ResponseEntity.ok()
                 .body(typeProductService.findAllTypeProduct()));
@@ -31,7 +31,7 @@ public class TypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
         return typeProductService.saveTypeProduct(tp)
                 .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))

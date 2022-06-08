@@ -18,7 +18,7 @@ public class SubTypeProductController {
 
 
 
-    @GetMapping("/liststp")
+    @GetMapping("")
     public Mono<ResponseEntity<Flux<SubTypeProduct>>> findAll(){
         return Mono.just(ResponseEntity.ok()
                 .body(subTypeProductService.findAllSubTypeProduct()));
@@ -32,7 +32,7 @@ public class SubTypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public Mono<ResponseEntity<SubTypeProduct>> create(@RequestBody SubTypeProduct stp) {
         return subTypeProductService.saveSubTypeProduct(stp)
                 .map(p -> ResponseEntity.created(URI.create("/api/subTypeProduct/".concat(p.getId())))

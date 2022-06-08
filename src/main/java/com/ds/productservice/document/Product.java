@@ -18,6 +18,7 @@ public class Product {
     private String idBank;
     private String tpeCrrency;
 
+    private Date date;
     private SubTypeProduct subTypeProduct;
     private String idClient;
 
@@ -31,9 +32,10 @@ public class Product {
     private Integer idBank1;
     */
 
-    public Product(String idBank, String tpeCrrency, SubTypeProduct subTypeProduct, String idClient) {
+    public Product(String idBank, String tpeCrrency, Date date, SubTypeProduct subTypeProduct, String idClient) {
         this.idBank = idBank;
         this.tpeCrrency = tpeCrrency;
+        this.date = date;
         this.subTypeProduct = subTypeProduct;
         this.idClient = idClient;
     }
