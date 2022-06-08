@@ -15,7 +15,7 @@ public class TypeProductImpl implements TypeProductService {
     TypeProductRespository repository;
 
     @Override
-    public Mono<TypeProduct> createTypeProduct(TypeProduct tp) {
+    public Mono<TypeProduct> saveTypeProduct(TypeProduct tp) {
         return repository.save(tp);
     }
 

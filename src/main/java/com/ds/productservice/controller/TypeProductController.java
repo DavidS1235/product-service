@@ -33,7 +33,7 @@ public class TypeProductController {
 
     @PostMapping()
     public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
-        return typeProductService.createTypeProduct(tp)
+        return typeProductService.saveTypeProduct(tp)
                 .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
                         .body(p)
                 );
@@ -46,7 +46,7 @@ public class TypeProductController {
                     sub.setCode(tp.getCode());
                     sub.setName(tp.getName());
                     sub.setProduct(tp.getProduct());
-                    return typeProductService.createTypeProduct(tp);
+                    return typeProductService.saveTypeProduct(tp);
                 })
                 .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
                         .body(p)

@@ -46,7 +46,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 
 		Flux.just(passive, active)
-				.flatMap(tp -> typeProductService.createTypeProduct(tp))
+				.flatMap(tp -> typeProductService.saveTypeProduct(tp))
 				.doOnNext(tp -> {
 					log.info("TypeProduct created: "+ tp.getCode() + tp.getName());
 				})
@@ -64,7 +64,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 								new SubTypeProduct("SP0007","Tarjeta de credito Empresarial",active)
 						).flatMap(sub ->{
 							sub.setDate(new Date());
-							return subTypeProductService.createSubTypeProduct(sub);
+							return subTypeProductService.saveSubTypeProduct(sub);
 						})
 				)
 								.subscribe(stp -> log.info("Insert -> Code: "+ stp.getCode()+ "Name: "+ stp.getName()));

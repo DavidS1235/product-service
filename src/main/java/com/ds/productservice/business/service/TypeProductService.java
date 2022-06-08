@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface TypeProductService {
 
-    public Mono<TypeProduct> createTypeProduct(TypeProduct tp);
+    public Mono<TypeProduct> saveTypeProduct(TypeProduct tp);
 
     public Flux<TypeProduct> findAllTypeProduct();
 

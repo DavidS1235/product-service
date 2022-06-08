@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public interface ProductService {
 
-    public Mono<Product> createProduct(Product p);
+    public Mono<Product> saveProduct(Product p);
 
     public Flux<Product> findAllProduct();
 

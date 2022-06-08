@@ -1,12 +1,8 @@
 package com.ds.productservice.business.Impl;
 
-import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.business.service.SubTypeProductService;
-import com.ds.productservice.document.Product;
 import com.ds.productservice.document.SubTypeProduct;
-import com.ds.productservice.document.TypeProduct;
 import com.ds.productservice.repository.SubTypeProductRepository;
-import com.ds.productservice.repository.TypeProductRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
