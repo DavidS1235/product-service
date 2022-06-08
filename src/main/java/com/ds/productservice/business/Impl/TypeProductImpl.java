@@ -13,7 +13,6 @@ public class TypeProductImpl implements TypeProductService {
 
     @Autowired
     TypeProductRespository repository;
-
     @Override
     public Mono<TypeProduct> saveTypeProduct(TypeProduct tp) {
         return repository.save(tp);

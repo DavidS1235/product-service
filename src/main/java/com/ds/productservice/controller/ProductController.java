@@ -2,7 +2,6 @@ package com.ds.productservice.controller;
 
 import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.document.Product;
-import com.ds.productservice.document.SubTypeProduct;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +32,9 @@ public class ProductController {
 
     @PostMapping("/create")
     public Mono<ResponseEntity<Product>> create(@RequestBody Product p) {
-        return productService.saveProduct(p)
+       return productService.saveProduct(p)
                 .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
-                        .body(p)
+                        .body(prd)
                 );
     }
 

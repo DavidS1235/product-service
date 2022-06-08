@@ -26,16 +26,16 @@ public class TypeProductController {
     @GetMapping("/{id}")
     public Mono<ResponseEntity<TypeProduct>> find(@PathVariable String id) {
         return typeProductService.find(id)
-                .map(p -> ResponseEntity.ok()
-                        .body(p))
+                .map(tp -> ResponseEntity.ok()
+                        .body(tp))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/create")
     public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
         return typeProductService.saveTypeProduct(tp)
-                .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
-                        .body(p)
+                .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
+                        .body(tpr)
                 );
     }
 
@@ -47,8 +47,8 @@ public class TypeProductController {
                     sub.setName(tp.getName());
                     return typeProductService.saveTypeProduct(tp);
                 })
-                .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
-                        .body(p)
+                .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
+                        .body(tpr)
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }

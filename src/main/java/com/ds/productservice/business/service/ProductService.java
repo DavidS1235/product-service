@@ -9,8 +9,6 @@ public interface ProductService {
 
     public Mono<Product> saveProduct(Product p);
 
-    //public Mono<Product> saveClientProduct(String clientId);
-
     public Flux<Product> findAllProduct();
 
     public Mono<Product> find(String id);

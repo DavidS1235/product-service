@@ -14,17 +14,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository repository;
-
-
     @Override
     public Mono<Product> saveProduct(Product p) {
         return repository.save(p);
     }
-
-//    @Override
-//    public Mono<Product> saveClientProduct(String clientId) {
-//        return null;
-//    }
 
     @Override
     public Flux<Product> findAllProduct() {
