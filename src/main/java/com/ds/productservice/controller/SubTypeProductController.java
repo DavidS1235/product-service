@@ -32,7 +32,7 @@ public class SubTypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public Mono<ResponseEntity<SubTypeProduct>> create(@RequestBody SubTypeProduct stp) {
         return subTypeProductService.saveSubTypeProduct(stp)
                 .map(p -> ResponseEntity.created(URI.create("/api/subTypeProduct/".concat(p.getId())))
@@ -47,6 +47,7 @@ public class SubTypeProductController {
                     sub.setCode(stp.getCode());
                     sub.setName(stp.getName());
                     sub.setDate(stp.getDate());
+                    sub.setTypeProduct(stp.getTypeProduct());
                     return subTypeProductService.saveSubTypeProduct(stp);
                 })
                 .map(p -> ResponseEntity.created(URI.create("/api/subTypeProduct/".concat(p.getId())))

@@ -31,7 +31,7 @@ public class TypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
         return typeProductService.saveTypeProduct(tp)
                 .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
@@ -45,7 +45,6 @@ public class TypeProductController {
                 .flatMap(sub -> {
                     sub.setCode(tp.getCode());
                     sub.setName(tp.getName());
-                    sub.setProduct(tp.getProduct());
                     return typeProductService.saveTypeProduct(tp);
                 })
                 .map(p -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(p.getId())))
