@@ -4,6 +4,7 @@ import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.document.Product;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -55,7 +56,9 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/updatebalance/{id}")
+    @PostMapping(value = "/balance/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<Product>> updateBalance(@RequestBody Product p, @PathVariable String id){
         return productService.find(id)
                 .flatMap(prd -> {

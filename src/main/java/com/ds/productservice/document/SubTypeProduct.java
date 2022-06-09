@@ -17,14 +17,21 @@ public class SubTypeProduct {
     private String id;
     private String code;
     private String name;
-
     private Date date;
-
+    private Number limitMount;
+    private Number limitDay;
+    private Number limitCredit;
+    private Boolean commission;
     private TypeProduct typeProduct;
 
-    public SubTypeProduct(String code, String name, TypeProduct typeProduct) {
+    public SubTypeProduct(String code, String name, Date date, Number limitMount, Number limitDay, Number limitCredit, Boolean commission, TypeProduct typeProduct) {
         this.code = code;
         this.name = name;
+        this.date = date;
+        this.limitMount = limitMount;
+        this.limitDay = limitDay;
+        this.limitCredit = limitCredit;
+        this.commission = commission;
         this.typeProduct = typeProduct;
     }
 }
