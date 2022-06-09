@@ -16,7 +16,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/listp")
+    @GetMapping("")
     public Mono<ResponseEntity<Flux<Product>>> findAll(){
         return Mono.just(ResponseEntity.ok()
                 .body(productService.findAllProduct()));
@@ -30,7 +30,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public Mono<ResponseEntity<Product>> create(@RequestBody Product p) {
        return productService.saveProduct(p)
                 .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
