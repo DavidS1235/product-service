@@ -55,6 +55,19 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/updatebalance/{id}")
+    public Mono<ResponseEntity<Product>> updateBalance(@RequestBody Product p, @PathVariable String id){
+        return productService.find(id)
+                .flatMap(prd -> {
+                    prd.setNumRemainder(p.getNumRemainder());
+                    return productService.saveProduct(prd);
+                })
+                .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
+                        .body(pr)
+                )
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
         return productService.find(id)

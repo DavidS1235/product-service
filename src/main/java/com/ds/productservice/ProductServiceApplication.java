@@ -35,7 +35,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		mongoTemplate.dropCollection("PRODUCT").subscribe();
+		//mongoTemplate.dropCollection("PRODUCT").subscribe();
 		mongoTemplate.dropCollection("TYPE_PRODUCT").subscribe();
 		mongoTemplate.dropCollection("SUB_TYPE_PRODUCT").subscribe();
 

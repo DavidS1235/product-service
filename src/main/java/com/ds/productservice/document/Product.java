@@ -17,24 +17,16 @@ public class Product {
     private String id;
     private String idBank;
     private String tpeCrrency;
-
+    private Number numRemainder;
     private Date date;
     private SubTypeProduct subTypeProduct;
     private String idClient;
 
-    /*private Integer idBank;
-    private Integer idClient;
-    private Integer idStpePduct;
-    private Integer tpeCrrcy;
-    private Integer idSubTypeCurrency;
-    private Integer idTypeCurrency;
-    private Integer idClient1;
-    private Integer idBank1;
-    */
 
-    public Product(String idBank, String tpeCrrency, Date date, SubTypeProduct subTypeProduct, String idClient) {
+    public Product(String idBank, String tpeCrrency, Number numRemainder, Date date, SubTypeProduct subTypeProduct, String idClient) {
         this.idBank = idBank;
         this.tpeCrrency = tpeCrrency;
+        this.numRemainder = numRemainder;
         this.date = date;
         this.subTypeProduct = subTypeProduct;
         this.idClient = idClient;

@@ -56,6 +56,7 @@ public class SubTypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
         return subTypeProductService.find(id)
@@ -65,6 +66,7 @@ public class SubTypeProductController {
                 })
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
+
 
 
 }

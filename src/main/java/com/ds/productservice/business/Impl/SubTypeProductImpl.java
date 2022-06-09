@@ -13,6 +13,7 @@ public class SubTypeProductImpl implements SubTypeProductService {
 
     @Autowired
     SubTypeProductRepository repository;
+
     @Override
     public Mono<SubTypeProduct> saveSubTypeProduct(SubTypeProduct stp) {
         return repository.save(stp);

@@ -1,6 +1,5 @@
 package com.ds.productservice.document;
 
-import java.lang.reflect.Type;
 import java.util.Date;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,6 @@ public class SubTypeProduct {
     public SubTypeProduct(String code, String name, TypeProduct typeProduct) {
         this.code = code;
         this.name = name;
-        this.typeProduct=typeProduct;
-
+        this.typeProduct = typeProduct;
     }
 }
