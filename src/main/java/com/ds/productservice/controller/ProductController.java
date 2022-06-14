@@ -31,13 +31,65 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
 
-    @PostMapping("")
-    public Mono<ResponseEntity<Product>> create(@RequestBody Product p) {
-       return productService.saveProduct(p)
-                .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
-                        .body(prd)
-                );
-    }
+  @PostMapping(value = "/ctaahorro"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createCtaAhorro(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @PostMapping(value = "/ctacorriente"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createCtaCorriente(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @PostMapping(value = "/pzofijo"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createPzoFijo(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @PostMapping(value = "/credpersonal"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createCredPersonal(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @PostMapping(value = "/credempresarial"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createCredEmpresarial(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @PostMapping(value = "/tc"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createTC(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
 
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Product>> update(@RequestBody Product p, @PathVariable String id){
@@ -47,7 +99,7 @@ public class ProductController {
                     prd.setTpeCrrency(p.getTpeCrrency());
                     prd.setDate(p.getDate());
                     prd.setSubTypeProduct(p.getSubTypeProduct());
-                    prd.setIdClient(p.getIdClient());
+                    prd.setClient(p.getClient());
                     return productService.saveProduct(prd);
                 })
                 .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
