@@ -2,9 +2,6 @@ package com.ds.productservice;
 
 import com.ds.productservice.business.service.SubTypeProductService;
 import com.ds.productservice.business.service.TypeProductService;
-import com.ds.productservice.document.SubTypeProduct;
-import com.ds.productservice.document.TypeProduct;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import reactor.core.publisher.Flux;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableEurekaClient
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
 
