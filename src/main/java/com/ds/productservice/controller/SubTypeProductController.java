@@ -2,6 +2,7 @@ package com.ds.productservice.controller;
 
 import com.ds.productservice.business.service.SubTypeProductService;
 import com.ds.productservice.document.SubTypeProduct;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,13 @@ public class SubTypeProductController {
     private SubTypeProductService subTypeProductService;
 
 
-
+  @CircuitBreaker(name = "product")
     @GetMapping("")
     public Mono<ResponseEntity<Flux<SubTypeProduct>>> findAll(){
         return Mono.just(ResponseEntity.ok()
                 .body(subTypeProductService.findAllSubTypeProduct()));
     }
-
+  @CircuitBreaker(name = "product")
     @GetMapping("/{id}")
     public Mono<ResponseEntity<SubTypeProduct>> findById(@PathVariable String id) {
         return subTypeProductService.find(id)
@@ -31,7 +32,7 @@ public class SubTypeProductController {
                         .body(p))
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
-
+  @CircuitBreaker(name = "product")
     @PostMapping("")
     public Mono<ResponseEntity<SubTypeProduct>> create(@RequestBody SubTypeProduct stp) {
         return subTypeProductService.saveSubTypeProduct(stp)
@@ -39,7 +40,7 @@ public class SubTypeProductController {
                         .body(p)
                 );
     }
-
+  @CircuitBreaker(name = "product")
     @PutMapping("/{id}")
     public Mono<ResponseEntity<SubTypeProduct>> update(@RequestBody SubTypeProduct stp, @PathVariable String id){
         return subTypeProductService.find(id)
@@ -56,7 +57,7 @@ public class SubTypeProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-
+  @CircuitBreaker(name = "product")
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
         return subTypeProductService.find(id)
