@@ -2,6 +2,7 @@ package com.ds.productservice.controller;
 
 import com.ds.productservice.business.service.ProductService;
 import com.ds.productservice.document.Product;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,12 +18,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+  @CircuitBreaker(name = "product")
     @GetMapping("")
     public Mono<ResponseEntity<Flux<Product>>> findAll(){
         return Mono.just(ResponseEntity.ok()
                 .body(productService.findAllProduct()));
     }
 
+  @CircuitBreaker(name = "product")
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Product>> findById(@PathVariable String id) {
         return productService.find(id)
@@ -31,7 +34,7 @@ public class ProductController {
                 .defaultIfEmpty(ResponseEntity.notFound().build()); //404
     }
 
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/ctaahorro"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,7 +44,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/ctacorriente"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,7 +54,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/pzofijo"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,7 +64,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/credpersonal"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,7 +74,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/credempresarial"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -81,7 +84,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
   @PostMapping(value = "/tc"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
@@ -91,7 +94,7 @@ public class ProductController {
                     .body(prd)
             );
   }
-
+  @CircuitBreaker(name = "product")
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Product>> update(@RequestBody Product p, @PathVariable String id){
         return productService.find(id)
@@ -108,7 +111,7 @@ public class ProductController {
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
+  @CircuitBreaker(name = "product")
     @PostMapping(value = "/balance/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -123,7 +126,7 @@ public class ProductController {
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
+  @CircuitBreaker(name = "product")
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
         return productService.find(id)
