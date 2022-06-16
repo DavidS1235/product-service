@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document("SUB_TYPE_PRODUCT")
+@Document(collection = "SUB_TYPE_PRODUCT")
 public class SubTypeProduct {
 
     @Id

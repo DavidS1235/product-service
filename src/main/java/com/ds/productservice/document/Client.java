@@ -1,8 +1,10 @@
 package com.ds.productservice.document;
 
 
-import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document(collection = "CLIENT")
 public class Client {
 
 
