@@ -11,25 +11,28 @@ import reactor.core.publisher.Mono;
 @Service
 public class TypeProductImpl implements TypeProductService {
 
-    @Autowired
-    TypeProductRespository repository;
-    @Override
-    public Mono<TypeProduct> saveTypeProduct(TypeProduct tp) {
-        return repository.save(tp);
-    }
+  @Autowired
+  TypeProductRespository repository;
 
-    @Override
-    public Flux<TypeProduct> findAllTypeProduct() {
-        return repository.findAll();
-    }
+  @Override
+  public Mono<TypeProduct> saveTypeProduct(TypeProduct tp) {
+    return repository.save(tp);
+  }
 
-    @Override
-    public Mono<TypeProduct> find(String id) {
-        return repository.findById(id);
-    }
-    @Override
-    public Mono<Void> DeleteTypeProduct(TypeProduct tp) {return repository.delete(tp);}
+  @Override
+  public Flux<TypeProduct> findAllTypeProduct() {
+    return repository.findAll();
+  }
 
+  @Override
+  public Mono<TypeProduct> find(String id) {
+    return repository.findById(id);
+  }
+
+  @Override
+  public Mono<Void> DeleteTypeProduct(TypeProduct tp) {
+    return repository.delete(tp);
+  }
 
 
 }

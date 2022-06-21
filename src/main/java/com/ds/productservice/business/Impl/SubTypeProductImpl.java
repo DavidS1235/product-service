@@ -11,23 +11,26 @@ import reactor.core.publisher.Mono;
 @Service
 public class SubTypeProductImpl implements SubTypeProductService {
 
-    @Autowired
-    SubTypeProductRepository repository;
+  @Autowired
+  SubTypeProductRepository repository;
 
-    @Override
-    public Mono<SubTypeProduct> saveSubTypeProduct(SubTypeProduct stp) {
-        return repository.save(stp);
-    }
+  @Override
+  public Mono<SubTypeProduct> saveSubTypeProduct(SubTypeProduct stp) {
+    return repository.save(stp);
+  }
 
-    @Override
-    public Flux<SubTypeProduct> findAllSubTypeProduct() {
-        return repository.findAll();
-    }
+  @Override
+  public Flux<SubTypeProduct> findAllSubTypeProduct() {
+    return repository.findAll();
+  }
 
-    @Override
-    public Mono<SubTypeProduct> find(String id) {
-        return repository.findById(id);
-    }
-    @Override
-    public Mono<Void> DeleteSubTypeProduct(SubTypeProduct stp) {return repository.delete(stp);}
+  @Override
+  public Mono<SubTypeProduct> find(String id) {
+    return repository.findById(id);
+  }
+
+  @Override
+  public Mono<Void> DeleteSubTypeProduct(SubTypeProduct stp) {
+    return repository.delete(stp);
+  }
 }

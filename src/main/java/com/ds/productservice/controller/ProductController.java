@@ -15,24 +15,24 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+  @Autowired
+  private ProductService productService;
 
   @CircuitBreaker(name = "product")
-    @GetMapping("")
-    public Mono<ResponseEntity<Flux<Product>>> findAll(){
-        return Mono.just(ResponseEntity.ok()
-                .body(productService.findAllProduct()));
-    }
+  @GetMapping("")
+  public Mono<ResponseEntity<Flux<Product>>> findAll() {
+    return Mono.just(ResponseEntity.ok()
+            .body(productService.findAllProduct()));
+  }
 
   @CircuitBreaker(name = "product")
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<Product>> findById(@PathVariable String id) {
-        return productService.find(id)
-                .map(p -> ResponseEntity.ok()
-                        .body(p))
-                .defaultIfEmpty(ResponseEntity.notFound().build()); //404
-    }
+  @GetMapping("/{id}")
+  public Mono<ResponseEntity<Product>> findById(@PathVariable String id) {
+    return productService.find(id)
+            .map(p -> ResponseEntity.ok()
+                    .body(p))
+            .defaultIfEmpty(ResponseEntity.notFound().build()); //404
+  }
 
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/ctaahorro"
@@ -44,6 +44,7 @@ public class ProductController {
                     .body(prd)
             );
   }
+
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/ctacorriente"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -54,6 +55,7 @@ public class ProductController {
                     .body(prd)
             );
   }
+
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/pzofijo"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -64,6 +66,7 @@ public class ProductController {
                     .body(prd)
             );
   }
+
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/credpersonal"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -74,6 +77,7 @@ public class ProductController {
                     .body(prd)
             );
   }
+
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/credempresarial"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -84,6 +88,7 @@ public class ProductController {
                     .body(prd)
             );
   }
+
   @CircuitBreaker(name = "product")
   @PostMapping(value = "/tc"
           , consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -94,51 +99,51 @@ public class ProductController {
                     .body(prd)
             );
   }
-  @CircuitBreaker(name = "product")
-    @PutMapping("/{id}")
-    public Mono<ResponseEntity<Product>> update(@RequestBody Product p, @PathVariable String id){
-        return productService.find(id)
-                .flatMap(prd -> {
-                    prd.setIdBank(p.getIdBank());
-                    prd.setTpeCrrency(p.getTpeCrrency());
-                    prd.setDate(p.getDate());
-                    prd.setSubTypeProduct(p.getSubTypeProduct());
-                    prd.setClient(p.getClient());
-                    return productService.saveProduct(prd);
-                })
-                .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
-                        .body(pr)
-                )
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-  @CircuitBreaker(name = "product")
-    @PostMapping(value = "/balance/{id}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Product>> updateBalance(@RequestBody Product p, @PathVariable String id){
-        return productService.find(id)
-                .flatMap(prd -> {
-                    prd.setNumRemainder(p.getNumRemainder());
-                    return productService.saveProduct(prd);
-                })
-                .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
-                        .body(pr)
-                )
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-  @CircuitBreaker(name = "product")
-    @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
-        return productService.find(id)
-                .flatMap(p -> {
-                    return productService.DeleteProduct(p)
-                            .then(Mono.just(ResponseEntity.noContent().build()));
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
 
+  @CircuitBreaker(name = "product")
+  @PutMapping("/{id}")
+  public Mono<ResponseEntity<Product>> update(@RequestBody Product p, @PathVariable String id) {
+    return productService.find(id)
+            .flatMap(prd -> {
+              prd.setIdBank(p.getIdBank());
+              prd.setTpeCrrency(p.getTpeCrrency());
+              prd.setDate(p.getDate());
+              prd.setSubTypeProduct(p.getSubTypeProduct());
+              prd.setClient(p.getClient());
+              return productService.saveProduct(prd);
+            })
+            .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
+                    .body(pr)
+            )
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
 
+  @CircuitBreaker(name = "product")
+  @PostMapping(value = "/balance/{id}",
+          consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> updateBalance(@RequestBody Product p, @PathVariable String id) {
+    return productService.find(id)
+            .flatMap(prd -> {
+              prd.setNumRemainder(p.getNumRemainder());
+              return productService.saveProduct(prd);
+            })
+            .map(pr -> ResponseEntity.created(URI.create("/api/product/".concat(pr.getId())))
+                    .body(pr)
+            )
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
 
+  @CircuitBreaker(name = "product")
+  @DeleteMapping("/{id}")
+  public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
+    return productService.find(id)
+            .flatMap(p -> {
+              return productService.DeleteProduct(p)
+                      .then(Mono.just(ResponseEntity.noContent().build()));
+            })
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
 
 
 }

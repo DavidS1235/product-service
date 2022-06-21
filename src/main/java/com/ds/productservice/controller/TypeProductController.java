@@ -15,52 +15,57 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/TypeProduct")
 public class TypeProductController {
 
-    @Autowired
-    private TypeProductService typeProductService;
+  @Autowired
+  private TypeProductService typeProductService;
+
   @CircuitBreaker(name = "product")
-    @GetMapping("")
-    public Mono<ResponseEntity<Flux<TypeProduct>>> listTypes(){
-        return Mono.just(ResponseEntity.ok()
-                .body(typeProductService.findAllTypeProduct()));
-    }
+  @GetMapping("")
+  public Mono<ResponseEntity<Flux<TypeProduct>>> listTypes() {
+    return Mono.just(ResponseEntity.ok()
+            .body(typeProductService.findAllTypeProduct()));
+  }
+
   @CircuitBreaker(name = "product")
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<TypeProduct>> find(@PathVariable String id) {
-        return typeProductService.find(id)
-                .map(tp -> ResponseEntity.ok()
-                        .body(tp))
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
+  @GetMapping("/{id}")
+  public Mono<ResponseEntity<TypeProduct>> find(@PathVariable String id) {
+    return typeProductService.find(id)
+            .map(tp -> ResponseEntity.ok()
+                    .body(tp))
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
+
   @CircuitBreaker(name = "product")
-    @PostMapping("")
-    public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
-        return typeProductService.saveTypeProduct(tp)
-                .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
-                        .body(tpr)
-                );
-    }
+  @PostMapping("")
+  public Mono<ResponseEntity<TypeProduct>> create(@RequestBody TypeProduct tp) {
+    return typeProductService.saveTypeProduct(tp)
+            .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
+                    .body(tpr)
+            );
+  }
+
   @CircuitBreaker(name = "product")
-    @PutMapping("/{id}")
-    public Mono<ResponseEntity<TypeProduct>> update(@RequestBody TypeProduct tp, @PathVariable String id){
-        return typeProductService.find(id)
-                .flatMap(sub -> {
-                    sub.setCode(tp.getCode());
-                    sub.setName(tp.getName());
-                    return typeProductService.saveTypeProduct(sub);
-                })
-                .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
-                        .body(tpr)
-                )
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
+  @PutMapping("/{id}")
+  public Mono<ResponseEntity<TypeProduct>> update(@RequestBody TypeProduct tp, @PathVariable String id) {
+    return typeProductService.find(id)
+            .flatMap(sub -> {
+              sub.setCode(tp.getCode());
+              sub.setName(tp.getName());
+              return typeProductService.saveTypeProduct(sub);
+            })
+            .map(tpr -> ResponseEntity.created(URI.create("/api/TypeProduct/".concat(tpr.getId())))
+                    .body(tpr)
+            )
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
+
   @CircuitBreaker(name = "product")
-    @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
-        return typeProductService.find(id)
-                .flatMap(tp -> {
-                    return typeProductService.DeleteTypeProduct(tp)
-                            .then(Mono.just(ResponseEntity.noContent().build()));
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
+  @DeleteMapping("/{id}")
+  public Mono<ResponseEntity<Object>> delete(@PathVariable String id) {
+    return typeProductService.find(id)
+            .flatMap(tp -> {
+              return typeProductService.DeleteTypeProduct(tp)
+                      .then(Mono.just(ResponseEntity.noContent().build()));
+            })
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
 }

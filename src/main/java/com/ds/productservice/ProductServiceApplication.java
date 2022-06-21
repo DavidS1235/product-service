@@ -8,30 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 
 @EnableEurekaClient
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
 
-	private final Logger log = LoggerFactory.getLogger("ProductServiceApplication");
+  private final Logger log = LoggerFactory.getLogger("ProductServiceApplication");
 
 
-	@Autowired
-	private SubTypeProductService subTypeProductService;
+  @Autowired
+  private SubTypeProductService subTypeProductService;
 
-	@Autowired
-	private TypeProductService typeProductService;
-	@Autowired
-	private ReactiveMongoTemplate mongoTemplate;
+  @Autowired
+  private TypeProductService typeProductService;
+  @Autowired
+  private ReactiveMongoTemplate mongoTemplate;
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProductServiceApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(ProductServiceApplication.class, args);
+  }
 
-	@Override
-	public void run(String... args) throws Exception {
+  @Override
+  public void run(String... args) throws Exception {
 
 //		//mongoTemplate.dropCollection("PRODUCT").subscribe();
 //		mongoTemplate.dropCollection("TYPE_PRODUCT").subscribe();
@@ -69,5 +69,5 @@ public class ProductServiceApplication implements CommandLineRunner {
 //
 //
 //
-	}
+  }
 }

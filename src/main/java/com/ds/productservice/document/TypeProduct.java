@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
@@ -13,13 +12,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "TYPE_PRODUCT")
 public class TypeProduct {
 
-    @Id
-    private String id;
-    private String code;
-    private String name;
+  @Id
+  private String id;
+  private String code;
+  private String name;
 
-    public TypeProduct(String code, String name) {
-        this.code = code;
-        this.name = name;
-    }
+  public TypeProduct(String code, String name) {
+    this.code = code;
+    this.name = name;
+  }
 }
