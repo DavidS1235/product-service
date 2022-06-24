@@ -101,6 +101,17 @@ public class ProductController {
   }
 
   @CircuitBreaker(name = "product")
+  @PostMapping(value = "/debitcard"
+          , consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<ResponseEntity<Product>> createDebitCard(@RequestBody Product p) {
+    return productService.saveProduct(p)
+            .map(prd -> ResponseEntity.created(URI.create("/api/product/".concat(prd.getId())))
+                    .body(prd)
+            );
+  }
+
+  @CircuitBreaker(name = "product")
   @PutMapping("/{id}")
   public Mono<ResponseEntity<Product>> update(@RequestBody Product p, @PathVariable String id) {
     return productService.find(id)
